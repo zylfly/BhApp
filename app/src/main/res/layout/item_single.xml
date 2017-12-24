@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4px">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        app:cardCornerRadius="10dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/homeListIv"
+                android:layout_width="match_parent"
+                android:layout_height="153dp"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/singleTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/homeListIv"
+                android:layout_marginLeft="20px"
+                android:padding="24px"
+                android:textColor="#333333"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/singlePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/singleTitle"
+                android:layout_marginLeft="20px"
+                android:padding="25px"
+                android:textColor="@color/A13f19f"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/singleTitle"
+                android:layout_marginLeft="90px"
+                android:layout_toRightOf="@+id/singlePrice"
+                android:padding="25px"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

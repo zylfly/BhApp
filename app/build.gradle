@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    defaultConfig {
+        applicationId "com.zyl.beheapp"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+    }
+
+    signingConfigs {
+        config {
+            keyAlias 'beheapp'
+            keyPassword '123456'
+            storeFile file('../bhmvp.jks')
+            storePassword '123456'
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.config
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            signingConfig signingConfigs.config
+            zipAlignEnabled true
+        }
+    }
+
+    // 自定义输出配置
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "beheapp_v${variant.versionName}_${variant.name}.apk"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["recyclerview-v7"]
+    implementation rootProject.ext.dependencies["cardview-v7"]
+    implementation rootProject.ext.dependencies["support-v4"]
+    implementation rootProject.ext.dependencies["design"]
+    //autolayout
+    implementation rootProject.ext.dependencies["autolayout"]
+    //Rx
+    implementation rootProject.ext.dependencies["rxjava2"]
+    implementation rootProject.ext.dependencies["rxandroid2"]
+    //Net
+    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["retrofit-converter-gson"]
+    // 针对rxjava2.x（adapter-rxjava2的版本要 >= 2.2.0）
+    implementation rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
+    implementation rootProject.ext.dependencies["okhttp3"]
+    implementation rootProject.ext.dependencies["glide"]
+    implementation rootProject.ext.dependencies["tkrefreshlayout"]
+    implementation rootProject.ext.dependencies["multiple-status-view"]
+    //logger日志
+    implementation rootProject.ext.dependencies["zylLogging"]
+    //底部的菜单栏
+    implementation rootProject.ext.dependencies["FlycoTabLayout_Lib"]
+    //banner
+    implementation rootProject.ext.dependencies["bga-banner"]
+    //动态改变baseUrl
+    implementation rootProject.ext.dependencies["retrofit-url-manager"]
+    //内置浏览器轻量级的webView
+    implementation rootProject.ext.dependencies["agentweb"]
+    //leakCanary
+    debugImplementation rootProject.ext.dependencies["canary-debug"]
+    releaseImplementation rootProject.ext.dependencies["canary-release"]
+    testImplementation rootProject.ext.dependencies["junit"]
+}

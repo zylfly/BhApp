@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+    <!--</style>-->
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Actionbar color Actionbar的背景色 -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--导航栏上的标题颜色-->
+        <item name="android:textColorPrimary">@color/black</item>
+        <!-- Status bar color 状态栏背景色 -->
+        <item name="colorPrimaryDark">@color/black</item>
+        <!-- 各控制元件(如：check box、switch 或是 radiobutton) 被勾选 (checked) 或是选定 (selected) 的颜色 -->
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Window color App的背景色 -->
+        <item name="android:windowBackground">@color/Af6f6f6</item>
+    </style>
+</resources>
