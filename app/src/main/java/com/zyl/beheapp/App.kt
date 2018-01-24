@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.widget.ImageView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -27,7 +28,6 @@ fun ImageView.chAllDisplayImage(activity: Context, strUrl: String?) {
 }
 
 
-
 class App : Application() {
 
     private var refWatcher: RefWatcher? = null
@@ -39,18 +39,24 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         //初始化log日志
-        ZLogger.init(true)
+        ZLogger.init(isDebug)
+        if (isDebug) {
+            ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+        ARouter.init(this) // 尽可能早，推荐在Application中初始化
         refWatcher = setupLeakCanary()
         registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks)
 
         //将每个 BaseUrl 进行初始化,运行时可以随时改变 DOMAIN_NAME 对应的值,从而达到改变 BaseUrl 的效果
         RetrofitUrlManager.getInstance().putDomain(GANK_DOMAIN_NAME, BASE_URL)
         RetrofitUrlManager.getInstance().putDomain(API_DOMAIN_NAME, BASE_URLS)
+
     }
 
     companion object {
         lateinit var context: App
-
+        //开启日志（true为开启，false为关闭）
+        var isDebug: Boolean = true
 
         fun getRefWatcher(context: Context): RefWatcher? {
             val myApp = context.applicationContext as App

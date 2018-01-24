@@ -2,17 +2,19 @@ package com.zyl.beheapp.ui.fragment
 
 import android.content.Context
 import android.graphics.Color
-import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.TextView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.hazz.kotlinmvp.base.BaseFragment
 import com.zyl.beheapp.R
+import com.zyl.beheapp.router.RouterApi
 import com.zyl.beheapp.widget.recyclerview.ViewHolder
 import com.zyl.beheapp.widget.recyclerview.adapter.CommonAdapter
 import kotlinx.android.synthetic.main.fragment_mine.*
 import java.util.*
 
 
+@Route(path = RouterApi.MINEFRAGMENT)
 class MineFragment : BaseFragment() {
 
     var list = ArrayList<String>()
@@ -40,14 +42,6 @@ class MineFragment : BaseFragment() {
 
     override fun getLayoutId(): Int = R.layout.fragment_mine
 
-    companion object {
-        fun newInstance(): MineFragment {
-            val fragment = MineFragment()
-            val bundle = Bundle()
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
 
     class MAdapter(mContext: Context, dataList: ArrayList<String>, layoutId: Int)
         : CommonAdapter<String>(mContext, dataList, layoutId) {

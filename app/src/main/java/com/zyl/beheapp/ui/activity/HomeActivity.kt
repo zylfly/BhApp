@@ -5,19 +5,19 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.view.KeyEvent
 import android.widget.Toast
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import com.hazz.kotlinmvp.base.BaseActivity
 import com.hazz.kotlinmvp.base.BaseFragmentAdapter
 import com.zyl.beheapp.R
+import com.zyl.beheapp.router.RouterApi
 import com.zyl.beheapp.mvp.model.bean.TabEntity
-import com.zyl.beheapp.ui.fragment.GankFragment
-import com.zyl.beheapp.ui.fragment.HomePageFragment
-import com.zyl.beheapp.ui.fragment.MineFragment
-import com.zyl.beheapp.ui.fragment.SingleFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 
+
+@Route(path = RouterApi.HOME)
 class HomeActivity : BaseActivity() {
 
     private val mTitles = arrayOf("首页", "单品", "福利", "个人")
@@ -72,10 +72,10 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun initFragments() {
-        mFragments.add(HomePageFragment.newInstance())
-        mFragments.add(SingleFragment.newInstance())
-        mFragments.add(GankFragment.newInstance())
-        mFragments.add(MineFragment.newInstance())
+        mFragments.add(RouterApi.routerFragment(RouterApi.HOMEPAGEFRAGMENT))
+        mFragments.add(RouterApi.routerFragment(RouterApi.SINGLEFRAGMENT))
+        mFragments.add(RouterApi.routerFragment(RouterApi.GANKFRAGMENT))
+        mFragments.add(RouterApi.routerFragment(RouterApi.MINEFRAGMENT))
     }
 
     override fun initData() {}

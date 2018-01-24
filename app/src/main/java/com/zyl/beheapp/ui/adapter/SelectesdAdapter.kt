@@ -1,7 +1,6 @@
 package com.zyl.beheapp.ui.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +10,14 @@ import android.view.animation.AnticipateOvershootInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import cn.bingoogolapple.bgabanner.BGABanner
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.zyl.beheapp.R
+import com.zyl.beheapp.router.RouterApi
 import com.zyl.beheapp.chAllDisplayImage
 import com.zyl.beheapp.mvp.model.bean.Banner
 import com.zyl.beheapp.mvp.model.bean.Item
-import com.zyl.beheapp.ui.activity.DetailActivity
 import io.reactivex.Observable
 import java.text.SimpleDateFormat
 import java.util.*
@@ -109,9 +109,9 @@ class SelectesdAdapter(val mContext: Context)
                     itemView.startAnimation(ani)
 
                     itemView.setOnClickListener({
-                        var intent = Intent(mContext, DetailActivity::class.java)
-                        intent.putExtra("url", data[position].url)
-                        mContext.startActivity(intent)
+                        ARouter.getInstance().build(RouterApi.DETAIL)
+                                .withString("url",data[position].url)
+                                .navigation()
                     })
                 }
             ITEM_TYPE_TEXT_HEADER ->

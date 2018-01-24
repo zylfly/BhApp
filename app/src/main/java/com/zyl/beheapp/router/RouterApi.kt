@@ -1,5 +1,6 @@
-package com.zyl.beheapp.Router
+package com.zyl.beheapp.router
 
+import android.support.v4.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 
 /**
@@ -8,10 +9,10 @@ import com.alibaba.android.arouter.launcher.ARouter
 object RouterApi {
 
     const val HOME = "/bhApp/home"//主页
-    const val ACTIVITY = "/bhApp/activity"//第二个页面
-    const val KOTLIN = "/bhApp/kotlin"//第san个页面
-    const val CHAT = "/bhApp/activity"//第
+    const val DETAIL = "/bhApp/detail"//详情
 
+    const val SELECTEDSFRAGMENT = "/bhApp/selectedsFragment"//第一页
+    const val HOMELISTFRAGMENT = "/bhApp/homeListFragment"//后面几页
 
     const val HOMEPAGEFRAGMENT = "/bhApp/homePageFragment"//首页
     const val SINGLEFRAGMENT = "/bhApp/singleFragment"//单品
@@ -19,7 +20,11 @@ object RouterApi {
     const val MINEFRAGMENT = "/bhApp/mineFragment"//我的
 
 
-    fun router(path:String){
+    fun router(path: String) {
         ARouter.getInstance().build(path).navigation()
+    }
+
+    fun routerFragment(path: String): Fragment {
+        return ARouter.getInstance().build(path).navigation() as Fragment
     }
 }

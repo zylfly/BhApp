@@ -6,27 +6,22 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.alibaba.android.arouter.launcher.ARouter
 import com.zyl.beheapp.App
 
 
 abstract class BaseActivity : AppCompatActivity() {
-    /**
-     * 多种状态的 View 的切换
-     */
-    //private var mLayoutStatusView: MultipleStatusView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
+        ARouter.getInstance().inject(this)  // Start auto inject.
         initData()
         initView()
         start()
-        //initListener()
     }
 
-//    private fun initListener() {
-//        mLayoutStatusView?.setOnClickListener(mRetryClickListener)
-//    }
 
     open val mRetryClickListener: View.OnClickListener = View.OnClickListener {
         start()

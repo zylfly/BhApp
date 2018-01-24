@@ -1,9 +1,10 @@
 package com.zyl.beheapp.ui.fragment
 
-import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.hazz.kotlinmvp.base.BaseFragment
 import com.zyl.beheapp.R
+import com.zyl.beheapp.router.RouterApi
 import com.zyl.beheapp.mvp.contract.SelectedContract
 import com.zyl.beheapp.mvp.model.bean.Banner
 import com.zyl.beheapp.mvp.model.bean.Item
@@ -14,7 +15,7 @@ import me.jessyan.retrofiturlmanager.RetrofitUrlManager
 import me.jessyan.retrofiturlmanager.onUrlChangeListener
 import okhttp3.HttpUrl
 
-
+@Route(path = RouterApi.SELECTEDSFRAGMENT)
 class SelectedsFragment : BaseFragment(), SelectedContract.View {
 
     private val mPresenter by lazy { SelectedPresenter() }
@@ -50,15 +51,6 @@ class SelectedsFragment : BaseFragment(), SelectedContract.View {
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_selected
-
-    companion object {
-        fun newInstance(): SelectedsFragment {
-            val fragment = SelectedsFragment()
-            val bundle = Bundle()
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

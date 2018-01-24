@@ -1,15 +1,15 @@
 package com.zyl.beheapp.ui.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.animation.AnimationUtils
 import android.view.animation.AnticipateOvershootInterpolator
 import android.widget.ImageView
 import android.widget.TextView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.zyl.beheapp.R
 import com.zyl.beheapp.chAllDisplayImage
 import com.zyl.beheapp.mvp.model.bean.Item
-import com.zyl.beheapp.ui.activity.DetailActivity
+import com.zyl.beheapp.router.RouterApi
 import com.zyl.beheapp.widget.recyclerview.ViewHolder
 import com.zyl.beheapp.widget.recyclerview.adapter.CommonAdapter
 import java.util.*
@@ -18,7 +18,6 @@ class SingleListAdapter(mContext: Context, dataList: ArrayList<Item>, layoutId: 
     : CommonAdapter<Item>(mContext, dataList, layoutId) {
 
 
-    var intent: Intent? = null
     fun addData(dataList: ArrayList<Item>) {
         this.mData.addAll(dataList)
         notifyDataSetChanged()
@@ -37,9 +36,9 @@ class SingleListAdapter(mContext: Context, dataList: ArrayList<Item>, layoutId: 
             itemView.startAnimation(ani)
 
             itemView.setOnClickListener({
-                intent = Intent(mContext, DetailActivity::class.java)
-                intent!!.putExtra("url", mData[position].data.url)
-                mContext.startActivity(intent)
+                ARouter.getInstance().build(RouterApi.DETAIL)
+                        .withString("url", mData[position].data.url)
+                        .navigation()
             })
         }
     }

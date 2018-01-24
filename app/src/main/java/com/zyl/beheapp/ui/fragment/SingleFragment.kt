@@ -1,9 +1,10 @@
 package com.zyl.beheapp.ui.fragment
 
-import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.hazz.kotlinmvp.base.BaseFragment
 import com.zyl.beheapp.R
+import com.zyl.beheapp.router.RouterApi
 import com.zyl.beheapp.mvp.contract.SingleContract
 import com.zyl.beheapp.mvp.model.bean.Item
 import com.zyl.beheapp.mvp.presenter.SinglePresenter
@@ -11,6 +12,7 @@ import com.zyl.beheapp.ui.adapter.SingleListAdapter
 import kotlinx.android.synthetic.main.base_title.*
 import kotlinx.android.synthetic.main.fragment_single.*
 
+@Route(path = RouterApi.SINGLEFRAGMENT)
 class SingleFragment : BaseFragment(), SingleContract.View {
 
     private var mData = ArrayList<Item>()
@@ -44,14 +46,6 @@ class SingleFragment : BaseFragment(), SingleContract.View {
 
     override fun getLayoutId(): Int = R.layout.fragment_single
 
-    companion object {
-        fun newInstance(): SingleFragment {
-            val fragment = SingleFragment()
-            val bundle = Bundle()
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
 
     override fun onDestroy() {
         super.onDestroy()

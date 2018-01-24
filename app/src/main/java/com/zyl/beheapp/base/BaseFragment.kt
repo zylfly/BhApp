@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.alibaba.android.arouter.launcher.ARouter
 import com.zyl.beheapp.App
 
 
@@ -19,10 +20,6 @@ abstract class BaseFragment : Fragment() {
      * 数据是否加载过了
      */
     private var hasLoadData = false
-    /**
-     * 多种状态的 View 的切换
-     */
-    //private var mLayoutStatusView: MultipleStatusView? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(getLayoutId(), null)
@@ -39,10 +36,10 @@ abstract class BaseFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isViewPrepare = true
+        ARouter.getInstance().inject(this)  // Start auto inject.
         initView()
         lazyLoadDataIfPrepared()
-        //多种状态切换的view 重试点击事件
-        //mLayoutStatusView?.setOnClickListener(mRetryClickListener)
+
     }
 
     private fun lazyLoadDataIfPrepared() {

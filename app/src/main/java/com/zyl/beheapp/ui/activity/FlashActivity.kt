@@ -1,10 +1,10 @@
 package com.zyl.beheapp.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import com.zyl.beheapp.R
+import com.zyl.beheapp.router.RouterApi
 
 
 class FlashActivity : AppCompatActivity() {
@@ -14,7 +14,7 @@ class FlashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_flash)
 
         Handler().postDelayed({
-            startActivity(Intent(this, HomeActivity::class.java))
+            RouterApi.router(RouterApi.HOME)
             finish()
         }, 1500)
     }

@@ -1,8 +1,8 @@
 package com.zyl.beheapp.ui.fragment
 
-import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.ImageView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.hazz.kotlinmvp.base.BaseFragment
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
@@ -10,12 +10,13 @@ import com.tt.lvruheng.eyepetizer.mvp.contract.GankContract
 import com.tt.lvruheng.eyepetizer.mvp.presenter.GankPresenter
 import com.zyl.beheapp.R
 import com.zyl.beheapp.mvp.model.bean.Result
+import com.zyl.beheapp.router.RouterApi
 import com.zyl.beheapp.ui.activity.ImageActivity
 import com.zyl.beheapp.ui.adapter.GankAdapter
 import kotlinx.android.synthetic.main.base_title.*
 import kotlinx.android.synthetic.main.fragment_gank.*
 
-
+@Route(path = RouterApi.GANKFRAGMENT)
 class GankFragment : BaseFragment(), GankContract.View {
 
     private var mPage: Int = 1
@@ -63,15 +64,6 @@ class GankFragment : BaseFragment(), GankContract.View {
                 refreshLayout!!.finishLoadmore()
             }
         })
-    }
-
-    companion object {
-        fun newInstance(): GankFragment {
-            val fragment = GankFragment()
-            val bundle = Bundle()
-            fragment.arguments = bundle
-            return fragment
-        }
     }
 
     override fun onDestroy() {

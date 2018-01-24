@@ -100,7 +100,7 @@ class RetrofitClientKt private constructor() {
                 //.addInterceptor(addHeaderInterceptor())
                 .addInterceptor(LoggingInterceptor
                         .Builder()//构建者模式
-                        .loggable(true) //是否开启日志打印
+                        .loggable(App.isDebug) //是否开启日志打印
                         .setLevel(Level.BODY) //打印的等级
                         .log(Platform.INFO) // 打印类型
                         .request("zylLog") // request的Tag
